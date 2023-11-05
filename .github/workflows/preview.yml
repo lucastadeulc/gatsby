@@ -12,10 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+
+      - name: Node
+        uses: actions/setup-node@v3
 
       - name: Deploy PR Preview
-        uses: deploy-preview/action@v1
+        uses: rossjrw/pr-preview-action@v1.4.4
         with:
           environment: development  # Replace with your desired environment name
           deploy_target: gh-pages  # Replace with your desired target branch
