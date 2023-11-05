@@ -26,4 +26,4 @@ jobs:
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./my-website/pbulic
+          source-dir: ./my-website/public
