@@ -1,17 +1,22 @@
-# .github/workflows/deploy.yml
-name: Deploy PR previews
+name: Deploy PR Preview
+
 on:
-  push:
-    branches:
-      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: npm i && npm run build
-      - uses: JamesIves/github-pages-deploy-action@v4
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Deploy PR Preview
+        uses: deploy-preview/action@v1
         with:
-          folder: ./my-website
-          branch: gh-pages
-          clean-exclude: pr-preview
+          environment: development  # Replace with your desired environment name
+          deploy_target: gh-pages  # Replace with your desired target branch
+          deploy_dir: ./my-website/  # Replace with the path to your Gatsby project
