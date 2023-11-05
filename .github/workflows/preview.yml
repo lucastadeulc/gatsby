@@ -1,0 +1,25 @@
+name: Deploy PR Preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  deploy-pr-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Deploy PR Preview
+        uses: akhileshns/gh-pages-deploy-action@v3.7.0
+        with:
+          folder: public
+          target_branch: gh-pages
+          build_script: npm ci && npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
