@@ -1,30 +1,25 @@
-# .github/workflows/preview.yml
-name: Deploy PR previews
+name: Deploy PR Preview
 
 on:
   pull_request:
     types:
       - opened
-      - reopened
       - synchronize
-      - closed
-
-concurrency: preview-${{ github.ref }}
+      - reopened
 
 jobs:
-  deploy-preview:
-    runs-on: ubuntu-20.04
+  deploy-pr-preview:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
+      - name: Deploy PR Preview
+        uses: akhileshns/gh-pages-deploy-action@v3.7.0
         with:
-          source-dir: ./build/
-          clean-exclude: pr-preview/
+          folder: public
+          target_branch: gh-pages
+          build_script: npm ci && npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
