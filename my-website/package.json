@@ -6,7 +6,10 @@
   "author": "Lucas Costa",
   "license": "0BSD",
   "starter-name": "gatsby-starter-minimal-blog",
+  "homepage": "https://lucastadeulc.github.io/gatsby",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "develop:cypress": "cross-env CYPRESS_SUPPORT=y yarn develop",
@@ -31,6 +34,7 @@
     "google-map-react": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0",
     "swiper": "^11.0.3"
   },
   "devDependencies": {
@@ -38,6 +42,7 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "cross-env": "^7.0.3",
+    "gh-pages": "^6.0.0",
     "typescript": "^5.2.2"
   }
 }
