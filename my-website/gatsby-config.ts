@@ -18,6 +18,7 @@ const config: GatsbyConfig = {
     author: `@ltlcosta`,
   },
   trailingSlash: `always`,
+  pathPrefix: "/gatsby",
   plugins: [
     {
       resolve: `@lekoarts/gatsby-theme-minimal-blog`,
